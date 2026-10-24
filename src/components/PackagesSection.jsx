@@ -25,6 +25,7 @@ export default function PackagesSection({
   const [searchQuery, setSearchQuery] = useState('');
   const [maxPrice, setMaxPrice] = useState(20000);
   const [quickViewPkg, setQuickViewPkg] = useState(null);
+  const [showAllMobile, setShowAllMobile] = useState(false);
 
   const categories = [
     { id: 'all', label: 'All Experiences' },
@@ -150,15 +151,37 @@ export default function PackagesSection({
 
         {/* Packages Grid */}
         {filteredPackages.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {filteredPackages.map((pkg) => (
-              <PackageCard
-                key={pkg.id}
-                pkg={pkg}
-                onBook={onBookPackage}
-                onQuickView={(p) => setQuickViewPkg(p)}
-              />
-            ))}
+          <div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {filteredPackages.map((pkg, idx) => (
+                <div
+                  key={pkg.id}
+                  className={`${idx >= 2 && !showAllMobile ? 'hidden md:block' : 'block'}`}
+                >
+                  <PackageCard
+                    pkg={pkg}
+                    onBook={onBookPackage}
+                    onQuickView={(p) => setQuickViewPkg(p)}
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Responsive Mobile Expand Button (Shows on mobile only when more than 2 packages exist) */}
+            {filteredPackages.length > 2 && (
+              <div className="mt-6 text-center md:hidden">
+                <button
+                  onClick={() => setShowAllMobile(!showAllMobile)}
+                  className="w-full py-3.5 px-5 rounded-2xl bg-white border border-slate-300 text-sm font-bold text-[#0077b6] hover:bg-sky-50 shadow-sm flex items-center justify-center space-x-2 transition-all cursor-pointer active:scale-98"
+                >
+                  <span>
+                    {showAllMobile
+                      ? 'Show Less Packages ↑'
+                      : `View All ${filteredPackages.length} Packages (${filteredPackages.length - 2} More) ↓`}
+                  </span>
+                </button>
+              </div>
+            )}
           </div>
         ) : (
           <div className="text-center py-16 bg-white rounded-3xl border border-dashed border-slate-300 p-8">

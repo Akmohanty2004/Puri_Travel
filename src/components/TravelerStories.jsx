@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Star, Quote, CheckCircle2, Heart, Award } from 'lucide-react';
 import { TESTIMONIALS } from '../data/travelData';
 
 export default function TravelerStories() {
+  const [showAllMobile, setShowAllMobile] = useState(false);
   return (
     <section id="testimonials" className="py-20 bg-slate-50/70 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -25,10 +26,12 @@ export default function TravelerStories() {
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {TESTIMONIALS.map((t) => (
+          {TESTIMONIALS.map((t, idx) => (
             <div
               key={t.id}
-              className="bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/80 flex flex-col justify-between group hover:-translate-y-1"
+              className={`bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/80 flex flex-col justify-between group hover:-translate-y-1 ${
+                idx >= 1 && !showAllMobile ? 'hidden md:flex' : 'flex'
+              }`}
             >
               <div>
                 {/* Stars & Quote Icon */}
@@ -68,6 +71,22 @@ export default function TravelerStories() {
             </div>
           ))}
         </div>
+
+        {/* Responsive Mobile Expand Button */}
+        {TESTIMONIALS.length > 1 && (
+          <div className="mt-6 text-center md:hidden">
+            <button
+              onClick={() => setShowAllMobile(!showAllMobile)}
+              className="w-full py-3.5 px-5 rounded-2xl bg-white border border-slate-300 text-sm font-bold text-[#0077b6] hover:bg-sky-50 shadow-sm flex items-center justify-center space-x-2 transition-all cursor-pointer active:scale-98"
+            >
+              <span>
+                {showAllMobile
+                  ? 'Show Less Stories ↑'
+                  : `Read All ${TESTIMONIALS.length} Devotee Reviews (${TESTIMONIALS.length - 1} More) ↓`}
+              </span>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

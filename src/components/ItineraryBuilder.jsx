@@ -18,6 +18,7 @@ import { ITINERARY_ACTIVITIES } from '../data/travelData';
 export default function ItineraryBuilder({ onBookCustomPlan }) {
   const [selectedDuration, setSelectedDuration] = useState('3 Days');
   const [selectedActivityIds, setSelectedActivityIds] = useState(['act-1', 'act-2', 'act-3', 'act-4']);
+  const [showAllMobile, setShowAllMobile] = useState(false);
 
   const toggleActivity = (id) => {
     if (selectedActivityIds.includes(id)) {
@@ -108,13 +109,15 @@ export default function ItineraryBuilder({ onBookCustomPlan }) {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              {ITINERARY_ACTIVITIES.map((act) => {
+              {ITINERARY_ACTIVITIES.map((act, idx) => {
                 const isSelected = selectedActivityIds.includes(act.id);
                 return (
                   <div
                     key={act.id}
                     onClick={() => toggleActivity(act.id)}
                     className={`p-4 rounded-2xl border-2 transition-all cursor-pointer flex flex-col justify-between ${
+                      idx >= 3 && !showAllMobile ? 'hidden sm:flex' : 'flex'
+                    } ${
                       isSelected
                         ? 'border-[#0077b6] bg-sky-50/60 shadow-sm'
                         : 'border-slate-200/80 bg-white hover:border-slate-300'
@@ -154,6 +157,20 @@ export default function ItineraryBuilder({ onBookCustomPlan }) {
                 );
               })}
             </div>
+
+            {/* Mobile View All Activities Toggle */}
+            {ITINERARY_ACTIVITIES.length > 3 && (
+              <div className="mt-4 sm:hidden">
+                <button
+                  onClick={() => setShowAllMobile(!showAllMobile)}
+                  className="w-full py-2.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-xs font-bold text-[#0077b6] transition-all text-center cursor-pointer active:scale-98"
+                >
+                  {showAllMobile
+                    ? 'Show Fewer Activities ↑'
+                    : `View All ${ITINERARY_ACTIVITIES.length} Activities (${ITINERARY_ACTIVITIES.length - 3} More) ↓`}
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Right Column: Real-Time Trip Summary & Budget Ticket (4 cols) */}

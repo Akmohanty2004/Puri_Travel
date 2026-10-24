@@ -16,6 +16,7 @@ import { TEMPLE_TIPS } from '../data/travelData';
 
 export default function DarshanGuide({ onBookVIPPass }) {
   const [activeFaq, setActiveFaq] = useState(0);
+  const [showAllTipsMobile, setShowAllTipsMobile] = useState(false);
 
   const faqs = [
     {
@@ -65,7 +66,9 @@ export default function DarshanGuide({ onBookVIPPass }) {
                 {TEMPLE_TIPS.map((tip, idx) => (
                   <div
                     key={idx}
-                    className="p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 flex items-start space-x-3"
+                    className={`p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 flex items-start space-x-3 ${
+                      idx >= 2 && !showAllTipsMobile ? 'hidden sm:flex' : 'flex'
+                    }`}
                   >
                     <div className="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-300 flex items-center justify-center shrink-0">
                       {idx === 0 && <Shirt className="w-4 h-4" />}
@@ -80,6 +83,20 @@ export default function DarshanGuide({ onBookVIPPass }) {
                   </div>
                 ))}
               </div>
+
+              {/* Mobile View All Guidelines Toggle */}
+              {TEMPLE_TIPS.length > 2 && (
+                <div className="mt-4 sm:hidden">
+                  <button
+                    onClick={() => setShowAllTipsMobile(!showAllTipsMobile)}
+                    className="w-full py-2.5 px-4 rounded-xl bg-white/15 border border-white/20 text-xs font-bold text-white hover:bg-white/25 transition-all text-center cursor-pointer active:scale-98"
+                  >
+                    {showAllTipsMobile
+                      ? 'Show Fewer Guidelines ↑'
+                      : `View All ${TEMPLE_TIPS.length} Guidelines (${TEMPLE_TIPS.length - 2} More) ↓`}
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Quick VIP Pass CTA Box */}
