@@ -29,6 +29,7 @@ export default function PackagesSection({
 
   const categories = [
     { id: 'all', label: 'All Experiences' },
+    { id: 'combo', label: '🔄 Multi-Place Combos' },
     { id: 'pan-india', label: '🇮🇳 Pan-India Yatra' },
     { id: 'spiritual', label: 'Spiritual & VIP Darshan' },
     { id: 'beach', label: 'Golden Beach & Resorts' },
@@ -41,7 +42,9 @@ export default function PackagesSection({
     return PACKAGES.filter((pkg) => {
       // Category filter
       if (selectedCategory !== 'all') {
-        if (selectedCategory === 'pan-india') {
+        if (selectedCategory === 'combo') {
+          if (!pkg.places || pkg.places.length <= 1) return false;
+        } else if (selectedCategory === 'pan-india') {
           if (pkg.secondaryCategory !== 'pan-india') return false;
         } else if (pkg.category !== selectedCategory) {
           return false;

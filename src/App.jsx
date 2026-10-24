@@ -66,7 +66,8 @@ export default function App() {
   };
 
   const handleSearch = ({ tab }) => {
-    if (tab === 'pan-india') setSelectedCategory('pan-india');
+    if (tab === 'combo') setSelectedCategory('combo');
+    else if (tab === 'pan-india') setSelectedCategory('pan-india');
     else if (tab === 'spiritual') setSelectedCategory('spiritual');
     else if (tab === 'beach') setSelectedCategory('beach');
     else if (tab === 'chilika') setSelectedCategory('chilika');
@@ -99,6 +100,8 @@ export default function App() {
         onSearch={handleSearch}
         onSelectCategory={(cat) => setSelectedCategory(cat)}
         onOpenFacilities={handleOpenFacilities}
+        onBookPackage={handleBookPackage}
+        onClaimCode={handleClaimCoupon}
       />
 
       {/* Live Temple & Coastal Pulse Tracker (Queue wait, tides, dolphins) */}
@@ -123,8 +126,11 @@ export default function App() {
       {/* Jagannath Mandir VIP Darshan & Pilgrim Guidebook */}
       <DarshanGuide onBookVIPPass={handleOpenFacilities} />
 
-      {/* Festive Discount Coupon Banner */}
-      <CouponBanner onClaimCode={handleClaimCoupon} />
+      {/* Dynamic Package Offers & Coupon Showcase Banner */}
+      <CouponBanner 
+        onClaimCode={handleClaimCoupon} 
+        onBookPackage={handleBookPackage}
+      />
 
       {/* Verified Traveler & Pilgrim Reviews */}
       <TravelerStories />

@@ -52,10 +52,10 @@ export default function PackageCard({ pkg, onBook, onQuickView }) {
 
         {/* Top Badges Bar: Featured Tag + Discount + Animated Heart */}
         <div className="absolute top-2.5 left-2.5 right-3 flex items-center justify-between z-20">
-          {/* Featured / Bestseller Badge */}
+          {/* Featured / Bestseller / Multi-Place Badge */}
           <span className="inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full text-[11px] font-black text-white bg-gradient-to-r from-[#ff6f00] via-[#ff8800] to-[#ffa200] shadow-md shadow-orange-500/30 tracking-wide">
             <Sparkles className="w-3 h-3 text-amber-100" />
-            <span>{pkg.featuredBadge || 'Verified Tour'}</span>
+            <span>{pkg.comboBadge || pkg.featuredBadge || 'Verified Tour'}</span>
           </span>
 
           {/* Right: Discount Pill + Heart Bookmark */}
@@ -153,6 +153,27 @@ export default function PackageCard({ pkg, onBook, onQuickView }) {
         <h3 className="text-sm sm:text-base font-extrabold text-[#071e3d] group-hover:text-[#0077b6] transition-colors duration-200 line-clamp-2 leading-snug">
           {pkg.title}
         </h3>
+
+        {/* Multi-Place Destination Chain Route Pill */}
+        {pkg.places && pkg.places.length > 1 && (
+          <div className="mt-2 py-1 px-2.5 rounded-xl bg-gradient-to-r from-amber-500/10 via-sky-500/10 to-amber-500/5 border border-amber-300/50 flex flex-wrap items-center gap-1.5">
+            <span className="text-[10px] font-black uppercase text-amber-950 bg-amber-400/40 px-1.5 py-0.2 rounded shrink-0">
+              {pkg.places.length} Places Tour:
+            </span>
+            <div className="flex items-center space-x-1 text-[10px] font-bold text-slate-800 flex-wrap">
+              {pkg.places.map((place, pIdx) => (
+                <span key={pIdx} className="inline-flex items-center space-x-1">
+                  <span className="bg-white/90 px-1.5 py-0.2 rounded border border-slate-200/80 shadow-2xs text-[#071e3d] whitespace-nowrap">
+                    {place}
+                  </span>
+                  {pIdx < pkg.places.length - 1 && (
+                    <span className="text-[#ff7b00] font-black text-xs">➔</span>
+                  )}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Highlights / Inclusions Pills (Compact 2 chips + counter) */}
         <div className="mt-2.5 flex flex-wrap gap-1">

@@ -40,6 +40,18 @@ export default function BookingModal({ packageData, onClose, onBookingSuccess })
     stationPickup: true,
   });
 
+  // Additional places selected by user
+  const [selectedExtraPlaces, setSelectedExtraPlaces] = useState([]);
+
+  const EXTRA_PLACES_OPTIONS = [
+    { id: 'konark', name: 'Konark Sun Temple & Chandrabhaga', price: 1200, icon: '🏛️' },
+    { id: 'chilika', name: 'Chilika Lake Irrawaddy Dolphin Lagoon', price: 1800, icon: '🐬' },
+    { id: 'bbsr', name: 'Bhubaneswar Lingaraj & Dhauli Stupa', price: 1500, icon: '🛕' },
+    { id: 'raghurajpur', name: 'Raghurajpur Crafts Village', price: 600, icon: '🎨' },
+    { id: 'varanasi', name: 'Varanasi Kashi Vishwanath & Ganga Ghats', price: 2500, icon: '🕉️' },
+    { id: 'ayodhya', name: 'Ayodhya Shri Ram Janmabhoomi Mandir', price: 2500, icon: '🏹' },
+  ];
+
   // Payment method
   const [paymentMethod, setPaymentMethod] = useState('upi');
   const [confirmedBooking, setConfirmedBooking] = useState(null);
@@ -59,7 +71,12 @@ export default function BookingModal({ packageData, onClose, onBookingSuccess })
     (addOns.vipPriestEscort ? addOnPrices.vipPriestEscort : 0) +
     (addOns.stationPickup ? addOnPrices.stationPickup : 0);
 
-  const grandTotal = Math.round(baseTotal + addOnsTotal);
+  const extraPlacesTotal = selectedExtraPlaces.reduce((sum, pId) => {
+    const p = EXTRA_PLACES_OPTIONS.find((opt) => opt.id === pId);
+    return sum + (p ? p.price * travelersCount : 0);
+  }, 0);
+
+  const grandTotal = Math.round(baseTotal + addOnsTotal + extraPlacesTotal);
 
   const handleNextStep = (e) => {
     e.preventDefault();
@@ -88,6 +105,10 @@ export default function BookingModal({ packageData, onClose, onBookingSuccess })
       email: email || 'Not specified',
       pujaGotra: pujaGotra || 'Kashyapa (General Archana)',
       wheelchairRequired,
+      placesVisited: [
+        packageData.location,
+        ...selectedExtraPlaces.map((id) => EXTRA_PLACES_OPTIONS.find((o) => o.id === id)?.name)
+      ].filter(Boolean),
       addOns: Object.keys(addOns).filter((k) => addOns[k]),
       totalAmount: grandTotal,
       paymentMethod,
@@ -217,11 +238,71 @@ export default function BookingModal({ packageData, onClose, onBookingSuccess })
                 </div>
               </div>
 
+              {/* Optional Multi-Place Tour Add-ons: User Can Add More Places */}
+              <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-300/60">
+                <div className="flex items-center space-x-2 mb-1">
+                  <span className="text-sm">📍</span>
+                  <h4 className="text-xs font-black text-[#071e3d] uppercase tracking-wider">
+                    Add More Places to Visit (Multi-Place Combo)
+                  </h4>
+                </div>
+                <p className="text-[11px] text-slate-600 mb-2.5">
+                  Want to cover more places in this trip? Check destinations below to automatically include them and update your package price:
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {EXTRA_PLACES_OPTIONS.map((opt) => {
+                    const isChecked = selectedExtraPlaces.includes(opt.id);
+                    return (
+                      <button
+                        key={opt.id}
+                        type="button"
+                        onClick={() => {
+                          setSelectedExtraPlaces((prev) =>
+                            isChecked ? prev.filter((id) => id !== opt.id) : [...prev, opt.id]
+                          );
+                        }}
+                        className={`p-2.5 rounded-xl border text-left flex items-center justify-between transition-all cursor-pointer ${
+                          isChecked
+                            ? 'bg-white border-[#ff7b00] shadow-xs ring-1 ring-orange-400'
+                            : 'bg-white/80 border-slate-200 hover:border-slate-300 text-slate-700'
+                        }`}
+                      >
+                        <div className="flex items-center space-x-2">
+                          <span className="text-base">{opt.icon}</span>
+                          <div>
+                            <div className="text-xs font-bold text-[#071e3d] leading-tight">{opt.name}</div>
+                            <span className="text-[10px] text-[#0077b6] font-semibold">+₹{opt.price.toLocaleString('en-IN')} / person</span>
+                          </div>
+                        </div>
+
+                        <div className={`w-4 h-4 rounded flex items-center justify-center shrink-0 border ${
+                          isChecked ? 'bg-[#ff7b00] border-[#ff7b00] text-white' : 'border-slate-300'
+                        }`}>
+                          {isChecked && <CheckCircle2 className="w-3.5 h-3.5 text-white" />}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {selectedExtraPlaces.length > 0 && (
+                  <div className="mt-2.5 text-[11px] font-bold text-amber-900 bg-amber-100/70 p-2 rounded-lg border border-amber-300/50 flex items-center justify-between">
+                    <span>
+                      + {selectedExtraPlaces.length} Extra Destination{selectedExtraPlaces.length > 1 ? 's' : ''} Included
+                    </span>
+                    <span className="font-black text-[#071e3d]">+₹{extraPlacesTotal.toLocaleString('en-IN')} ({travelersCount} travelers)</span>
+                  </div>
+                )}
+              </div>
+
               {/* Price Preview */}
               <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
                 <div>
-                  <span className="text-xs text-slate-500">Estimated Base Package:</span>
-                  <div className="text-xl font-black text-[#071e3d]">₹{baseTotal.toLocaleString('en-IN')}</div>
+                  <span className="text-xs text-slate-500">
+                    Total Estimated Package ({selectedExtraPlaces.length + 1} Places):
+                  </span>
+                  <div className="text-xl font-black text-[#071e3d]">₹{grandTotal.toLocaleString('en-IN')}</div>
                 </div>
                 <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
                   Best Price Guarantee

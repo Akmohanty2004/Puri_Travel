@@ -14,8 +14,14 @@ import {
   Waves, 
   Star,
   Check,
-  Landmark
+  Landmark,
+  Gift,
+  Copy,
+  Flame,
+  CheckCircle2,
+  Tag
 } from 'lucide-react';
+import { PACKAGES } from '../data/travelData';
 
 // ── Classical UNESCO Colonnade Temple Icon ─────────────────────────────────────
 const UnescoIcon = () => (
@@ -165,17 +171,111 @@ const heroSlides = [
   },
 ];
 
+// ── Package-Specific Flash Offers for Front Hero Section ────────────────────────
+const HERO_PACKAGE_OFFERS = [
+  {
+    packageId: 'pkg-1',
+    packageName: 'Lord Jagannath VIP Darshan',
+    tabLabel: '🛕 Jagannath VIP Darshan',
+    discountBadge: 'FLAT ₹1,500 OFF',
+    bonusPerk: 'Complimentary Chhappan Bhog Mahaprasad Box',
+    code: 'DIVINE1500',
+    description: 'Special pilgrimage discount with verified Sevayat priest escort, Mahaprasad kit & priority temple queue pass.',
+    savings: 'Save ₹1,500',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Puri_Jagannath_Temple.jpg',
+    locationShort: 'Puri Temple, Odisha'
+  },
+  {
+    packageId: 'pkg-2',
+    packageName: 'Golden Beachfront Resort',
+    tabLabel: '🏖️ Beachfront Resort',
+    discountBadge: 'FLAT ₹1,200 OFF',
+    bonusPerk: 'Free Sea-Facing Room Upgrade + Breakfast',
+    code: 'BEACH1200',
+    description: 'Luxury resort on Blue Flag Golden Beach with private sand access, ocean view upgrade & sunrise buffet.',
+    savings: 'Save ₹1,200',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/8/88/Golden_beach_puri.jpg',
+    locationShort: 'Golden Beach, Puri'
+  },
+  {
+    packageId: 'pkg-7',
+    packageName: 'Varanasi Kashi Vishwanath Yatra',
+    tabLabel: '🇮🇳 Varanasi Yatra',
+    discountBadge: 'FLAT ₹2,000 OFF',
+    bonusPerk: 'Reserved Private Ganga Aarti Bajra Boat',
+    code: 'KASHI2000',
+    description: 'Pan-India pilgrimage deal: Sugam VIP Darshan passes, private evening Ganga Aarti boat & AC cab transfers.',
+    savings: 'Save ₹2,000',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/4/41/Evening_Ganga_Aarti%2C_at_Dashashwamedh_ghat%2C_Varanasi.jpg',
+    locationShort: 'Varanasi Ghat, UP'
+  },
+  {
+    packageId: 'pkg-4',
+    packageName: 'Konark Sun Temple Heritage',
+    tabLabel: '🏛️ Konark Heritage',
+    discountBadge: 'FLAT ₹1,000 OFF',
+    bonusPerk: 'Free 7 PM Light & Sound Show Entry Pass',
+    code: 'KONARK1000',
+    description: 'Explore the 13th-century Sun Temple with accredited historian guide plus evening light & sound passes.',
+    savings: 'Save ₹1,000',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/d/d8/Sun_Temple_at_Konark%2C_Odisha%2C_India.JPG',
+    locationShort: 'Konark Temple, Odisha'
+  },
+  {
+    packageId: 'pkg-3',
+    packageName: 'Chilika Dolphin Lagoon Cruise',
+    tabLabel: '🐬 Chilika Cruise',
+    discountBadge: 'FLAT ₹800 OFF',
+    bonusPerk: 'Private Speedboat Upgrade + Sea Mouth Tour',
+    code: 'CHILIKA800',
+    description: 'Speedboat cruise in Asia’s largest brackish lagoon with guaranteed Irrawaddy dolphin sightings & island temple visit.',
+    savings: 'Save ₹800',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/a/a1/Chilika_lake.jpg',
+    locationShort: 'Chilika Lake, Odisha'
+  }
+];
 
-
-export default function Hero({ onSearch, onSelectCategory, onOpenFacilities }) {
+export default function Hero({ onSearch, onSelectCategory, onOpenFacilities, onBookPackage, onClaimCode }) {
   const [activeTab, setActiveTab]       = useState('all');
   const [destination, setDestination]   = useState('Puri Golden Beach & Temple Corridor');
   const [travelDate, setTravelDate]     = useState('2026-11-20');
   const [guests, setGuests]             = useState('2 Adults, 1 Child');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused]         = useState(false);
+  const [activeOfferIndex, setActiveOfferIndex] = useState(0);
+  const [isOfferPaused, setIsOfferPaused]       = useState(false);
+  const [copiedHeroCode, setCopiedHeroCode]     = useState(null);
 
-  // Auto-advance carousel
+  const handleCopyHeroCode = (code) => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(code);
+      setCopiedHeroCode(code);
+      setTimeout(() => setCopiedHeroCode(null), 2500);
+      if (onClaimCode) onClaimCode(code);
+    }
+  };
+
+  const handleBookWithHeroOffer = (off) => {
+    if (onClaimCode) onClaimCode(off.code);
+    const targetPkg = PACKAGES.find((p) => p.id === off.packageId);
+    if (onBookPackage && targetPkg) {
+      onBookPackage(targetPkg);
+    } else {
+      const el = document.getElementById('packages');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Auto-advance offer banner carousel every 4.5s (pauses when user hovers/interacts)
+  useEffect(() => {
+    if (isOfferPaused) return;
+    const timer = setInterval(() => {
+      setActiveOfferIndex((prev) => (prev + 1) % HERO_PACKAGE_OFFERS.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [isOfferPaused]);
+
+  // Auto-advance hero right-side architectural card carousel
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
@@ -379,24 +479,24 @@ export default function Hero({ onSearch, onSelectCategory, onOpenFacilities }) {
             </div>
           </div>
 
-          {/* ── RIGHT COLUMN: Unique Architectural Shaped Image Card (Properly Arranged) ── */}
+          {/* ── RIGHT COLUMN: Unique Sacred Archway Portal Silhouette Showcase ── */}
           <div className="lg:col-span-6 xl:col-span-6 relative flex justify-center lg:justify-end">
 
-            {/* Decorative Offset Glow Backdrop Layer */}
-            <div className="absolute -inset-1.5 rounded-[38px] rounded-tr-[96px] rounded-bl-[64px] bg-gradient-to-tr from-sky-400/25 via-blue-500/15 to-[#ffa200]/40 blur-md opacity-80 pointer-events-none transform -rotate-1 scale-[1.01]" />
+            {/* Ambient Grand Arch Halo Backdrop */}
+            <div className="absolute -inset-1.5 rounded-t-[76px] sm:rounded-t-[100px] rounded-b-[34px] bg-gradient-to-b from-[#ffa200]/35 via-sky-500/20 to-blue-600/10 blur-xl opacity-85 pointer-events-none" />
 
-            {/* Main Showcase Card with Unique Architectural Shape */}
+            {/* Main Showcase Card with Unique Arched Temple Gateway Silhouette */}
             <div
-              className="relative w-full max-w-[560px] rounded-[36px] rounded-tr-[92px] rounded-bl-[60px] p-[1.5px] bg-gradient-to-tr from-sky-400/35 via-blue-400/20 to-amber-400/80 shadow-[0_25px_65px_rgba(2,12,30,0.85),0_0_35px_rgba(0,119,182,0.25)] group"
+              className="relative w-full max-w-[560px] rounded-t-[72px] sm:rounded-t-[96px] rounded-b-[30px] p-[2px] bg-gradient-to-b from-[#ffa200] via-sky-400/50 to-[#0077b6]/80 shadow-[0_25px_65px_rgba(2,12,30,0.85),0_0_35px_rgba(255,162,0,0.25)] group"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
-              <div className="relative rounded-[34px] rounded-tr-[90px] rounded-bl-[58px] overflow-hidden bg-[#091f3d]/95 backdrop-blur-xl">
-                {/* Amber corner highlight flare on top-right */}
-                <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-amber-400/40 via-orange-500/15 to-transparent pointer-events-none z-20" />
+              <div className="relative rounded-t-[70px] sm:rounded-t-[94px] rounded-b-[28px] overflow-hidden bg-[#091f3d]/95 backdrop-blur-xl">
+                {/* Golden Arch Crown Glow */}
+                <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-amber-400/35 via-orange-400/10 to-transparent pointer-events-none z-20 rounded-t-[94px]" />
 
-                {/* ── Image Area with Unique Architectural Contour ── */}
-                <div className="relative aspect-[16/11] overflow-hidden bg-slate-900">
+                {/* ── Image Area with Arched Portal Crown ── */}
+                <div className="relative aspect-[16/11] overflow-hidden bg-slate-900 rounded-t-[68px] sm:rounded-t-[92px]">
                   {heroSlides.map((s, index) => (
                     <div
                       key={s.id}
@@ -414,27 +514,35 @@ export default function Hero({ onSearch, onSelectCategory, onOpenFacilities }) {
                     </div>
                   ))}
 
-                  {/* UNESCO / Heritage Badge Top-Left */}
-                  <div className="absolute top-3.5 left-3.5 z-20 flex items-center space-x-2 bg-slate-950/70 backdrop-blur-md border border-white/25 px-3.5 py-1.5 rounded-full text-white text-xs font-bold shadow-lg shadow-black/40">
-                    <UnescoIcon />
-                    <span className="tracking-wide font-extrabold">{slide.badge}</span>
+                  {/* UNESCO / Heritage Badge & Offers Counter Top-Left of Arch */}
+                  <div className="absolute top-5 sm:top-6 left-5 sm:left-6 z-20 flex flex-wrap items-center gap-2">
+                    <div className="flex items-center space-x-2 bg-slate-950/80 backdrop-blur-md border border-white/25 px-3.5 py-1.5 rounded-full text-white text-xs font-bold shadow-lg shadow-black/40">
+                      <UnescoIcon />
+                      <span className="tracking-wide font-extrabold">{slide.badge}</span>
+                    </div>
+
+                    {/* How Many Offers Added Counter Badge */}
+                    <div className="flex items-center space-x-1.5 bg-gradient-to-r from-[#ff7b00] to-[#ffa200] text-slate-950 px-3 py-1.5 rounded-full text-xs font-black shadow-lg shadow-orange-500/35 border border-white/25 tracking-wide">
+                      <Flame className="w-3.5 h-3.5 fill-slate-950 text-slate-950" />
+                      <span>{HERO_PACKAGE_OFFERS.length} Offers Added</span>
+                    </div>
                   </div>
 
-                  {/* Slide Counter "1 / 5" and Arrow Nav Controls Top-Right */}
-                  <div className="absolute top-3.5 right-6 z-20 flex items-center space-x-1.5">
-                    <span className="px-3 py-1.5 rounded-full bg-slate-950/75 backdrop-blur-md text-xs font-extrabold text-white border border-white/20 shadow-md">
+                  {/* User-Friendly Slide Counter & Navigation Chevrons Top-Right of Arch */}
+                  <div className="absolute top-5 sm:top-6 right-5 sm:right-6 z-20 flex items-center space-x-2">
+                    <span className="px-3 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md text-xs font-extrabold text-white border border-white/20 shadow-md">
                       {currentSlide + 1} / {heroSlides.length}
                     </span>
                     <button
                       onClick={handlePrevSlide}
-                      className="w-7 h-7 rounded-full bg-slate-950/75 hover:bg-slate-900 hover:border-amber-400/60 hover:text-[#ffa200] backdrop-blur-md flex items-center justify-center text-white border border-white/20 cursor-pointer transition active:scale-90"
+                      className="w-8 h-8 rounded-full bg-slate-950/80 hover:bg-[#0077b6] hover:border-sky-300 backdrop-blur-md flex items-center justify-center text-white border border-white/20 cursor-pointer transition active:scale-95 shadow-md"
                       aria-label="Previous slide"
                     >
                       <ChevronLeft className="w-4 h-4" />
                     </button>
                     <button
                       onClick={handleNextSlide}
-                      className="w-7 h-7 rounded-full bg-slate-950/75 hover:bg-slate-900 hover:border-amber-400/60 hover:text-[#ffa200] backdrop-blur-md flex items-center justify-center text-white border border-white/20 cursor-pointer transition active:scale-90"
+                      className="w-8 h-8 rounded-full bg-slate-950/80 hover:bg-[#0077b6] hover:border-sky-300 backdrop-blur-md flex items-center justify-center text-white border border-white/20 cursor-pointer transition active:scale-95 shadow-md"
                       aria-label="Next slide"
                     >
                       <ChevronRight className="w-4 h-4" />
@@ -454,13 +562,32 @@ export default function Hero({ onSearch, onSelectCategory, onOpenFacilities }) {
                         </p>
                       </div>
 
-                      {/* Star Rating Badge */}
-                      <div className="flex items-center space-x-1.5 bg-slate-950/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-amber-400/40 shrink-0 shadow-lg shadow-black/40">
-                        <Star className="w-3.5 h-3.5 text-[#ffa200] fill-[#ffa200] drop-shadow-[0_0_6px_rgba(255,162,0,0.8)]" />
-                        <span className="text-white text-xs font-black">{slide.rating}</span>
+                      {/* Star Rating Badge & Live Offers Pill */}
+                      <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-1.5 bg-slate-950/80 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-amber-400/40 shrink-0 shadow-lg shadow-black/40">
+                          <Star className="w-3.5 h-3.5 text-[#ffa200] fill-[#ffa200] drop-shadow-[0_0_6px_rgba(255,162,0,0.8)]" />
+                          <span className="text-white text-xs font-black">{slide.rating}</span>
+                        </div>
+                        <div className="hidden sm:flex items-center space-x-1 bg-amber-400/20 backdrop-blur-md border border-amber-400/50 text-amber-200 px-3 py-1.5 rounded-full text-xs font-black shrink-0 shadow-md">
+                          <Tag className="w-3 h-3 text-[#ffa200]" />
+                          <span>{HERO_PACKAGE_OFFERS.length} Deals Live</span>
+                        </div>
                       </div>
                     </div>
                   </div>
+                </div>
+
+                {/* ── Active Offers Strip for Hero Profile ── */}
+                <div className="px-4 py-2 bg-gradient-to-r from-amber-500/20 via-[#ff7b00]/25 to-amber-500/20 border-t border-amber-400/30 flex items-center justify-between text-xs font-bold text-amber-200">
+                  <div className="flex items-center space-x-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                    <span className="font-extrabold text-white text-[11px] sm:text-xs">
+                      🔥 {HERO_PACKAGE_OFFERS.length} Special Package Offers Added
+                    </span>
+                  </div>
+                  <span className="text-[10px] sm:text-[11px] font-black bg-gradient-to-r from-amber-400 to-[#ffa200] text-slate-950 px-2.5 py-0.5 rounded-full shadow-xs">
+                    Save up to ₹2,000
+                  </span>
                 </div>
 
                 {/* ── 3 Stat Mini-Cards (Konark Wheels, Light & Sound, Tour Guide) ── */}
@@ -517,12 +644,177 @@ export default function Hero({ onSearch, onSelectCategory, onOpenFacilities }) {
           </div>
         </div>
 
+        {/* ════ HERO PACKAGE OFFERS BANNER (PROPERLY ALIGNED & ATTRACTIVE) ════ */}
+        {(() => {
+          const currentHeroOffer = HERO_PACKAGE_OFFERS[activeOfferIndex];
+          return (
+            <div 
+              className="mb-6 rounded-3xl bg-[#092244]/90 backdrop-blur-xl border border-amber-400/40 p-4 sm:p-5 shadow-[0_20px_50px_rgba(2,12,30,0.65)] text-white"
+              onMouseEnter={() => setIsOfferPaused(true)}
+              onMouseLeave={() => setIsOfferPaused(false)}
+            >
+              {/* Top Row: Flash Badge & Deal Selector Tabs */}
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between pb-3 mb-3.5 border-b border-white/10 gap-3">
+                <div className="flex items-center space-x-2.5">
+                  <span className="flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-black bg-gradient-to-r from-[#ff7b00] to-[#ffa200] text-white shadow-md shadow-orange-500/30">
+                    <Flame className="w-3.5 h-3.5 fill-white text-white" />
+                    <span>PACKAGE FLASH DEALS</span>
+                  </span>
+                  <span className="text-xs text-sky-200/90 font-semibold hidden sm:inline">
+                    Auto-sliding exclusive live offers • Click tabs or arrows to explore
+                  </span>
+                </div>
+
+                {/* Package Filter Pills */}
+                <div className="flex items-center space-x-1.5 overflow-x-auto pb-1 lg:pb-0 scrollbar-none">
+                  {HERO_PACKAGE_OFFERS.map((off, idx) => {
+                    const isSelected = activeOfferIndex === idx;
+                    return (
+                      <button
+                        key={off.packageId}
+                        type="button"
+                        onClick={() => setActiveOfferIndex(idx)}
+                        className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer flex items-center space-x-1.5 ${
+                          isSelected
+                            ? 'bg-amber-400 text-slate-950 shadow-md ring-2 ring-white/30'
+                            : 'bg-white/10 text-white/85 hover:bg-white/20'
+                        }`}
+                      >
+                        <span>{off.tabLabel}</span>
+                        <span className={`text-[10px] font-black px-1.5 py-0.2 rounded ${
+                          isSelected ? 'bg-slate-950 text-amber-300' : 'bg-amber-400/25 text-amber-300'
+                        }`}>
+                          {off.discountBadge}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Bottom Row: Offer Details & Voucher Action */}
+              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                {/* Left: Authentic Destination Image Slide + Offer Details */}
+                <div className="flex items-center space-x-3.5 sm:space-x-4 w-full md:w-auto">
+                  {/* Real Package Place Large Slide Card */}
+                  <div className="relative w-32 h-22 sm:w-40 sm:h-26 md:w-48 md:h-28 rounded-2xl overflow-hidden bg-slate-900 border-2 border-amber-400/80 shadow-xl shrink-0 group/slide cursor-pointer">
+                    <img
+                      src={currentHeroOffer.image}
+                      alt={currentHeroOffer.packageName}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover/slide:scale-108"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/15 to-black/25 pointer-events-none" />
+
+                    {/* Slide Counter on Top-Right of Image */}
+                    <div className="absolute top-1.5 right-1.5 z-20 flex items-center space-x-1 bg-black/65 backdrop-blur-xs px-2 py-0.5 rounded-full border border-white/20">
+                      <span className="text-[10px] font-black text-amber-300">{activeOfferIndex + 1}</span>
+                      <span className="text-[10px] text-white/50">/</span>
+                      <span className="text-[10px] font-bold text-white/80">{HERO_PACKAGE_OFFERS.length}</span>
+                    </div>
+
+                    {/* Interactive Slide Chevrons directly on the image */}
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveOfferIndex((prev) => (prev - 1 + HERO_PACKAGE_OFFERS.length) % HERO_PACKAGE_OFFERS.length);
+                      }}
+                      className="absolute left-1.5 top-1/2 -translate-y-1/2 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-black/75 hover:bg-amber-400 text-white hover:text-slate-950 flex items-center justify-center transition-all cursor-pointer z-20 shadow-md active:scale-90"
+                      aria-label="Previous package"
+                    >
+                      <ChevronLeft className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveOfferIndex((prev) => (prev + 1) % HERO_PACKAGE_OFFERS.length);
+                      }}
+                      className="absolute right-1.5 top-1/2 -translate-y-1/2 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-black/75 hover:bg-amber-400 text-white hover:text-slate-950 flex items-center justify-center transition-all cursor-pointer z-20 shadow-md active:scale-90"
+                      aria-label="Next package"
+                    >
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
+
+                    {/* Place Tag on bottom of image */}
+                    <div className="absolute bottom-1.5 inset-x-1.5 z-20">
+                      <span className="block text-[9px] sm:text-[10px] font-black text-amber-200 text-center truncate bg-slate-950/85 backdrop-blur-xs px-1.5 py-0.5 rounded-lg border border-amber-400/30 shadow-xs tracking-wide">
+                        {currentHeroOffer.locationShort}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                      <span className="text-sm sm:text-base font-black text-white">
+                        {currentHeroOffer.discountBadge}
+                      </span>
+                      <span className="text-white/40">•</span>
+                      <span className="text-xs sm:text-sm font-bold text-amber-300">
+                        {currentHeroOffer.bonusPerk}
+                      </span>
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-sky-500/20 text-sky-200 border border-sky-400/30">
+                        FOR {currentHeroOffer.packageName}
+                      </span>
+                    </div>
+                    <p className="text-xs text-sky-100/80 mt-0.5 leading-snug line-clamp-1">
+                      {currentHeroOffer.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Right: Coupon Ticket & Book Deal Button */}
+                <div className="flex items-center space-x-2.5 w-full md:w-auto justify-end shrink-0">
+                  {/* Voucher Pill */}
+                  <div className="flex items-center space-x-2 bg-black/45 border border-dashed border-amber-300/70 px-3 py-1.5 rounded-xl">
+                    <div>
+                      <span className="text-[9px] text-amber-300 uppercase font-bold tracking-wider block leading-none">Code</span>
+                      <strong className="text-sm font-mono font-black text-white tracking-wider">{currentHeroOffer.code}</strong>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => handleCopyHeroCode(currentHeroOffer.code)}
+                      className="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-amber-400 hover:bg-amber-300 text-slate-950 transition-colors flex items-center space-x-1 cursor-pointer active:scale-95"
+                      title="Copy coupon code"
+                    >
+                      {copiedHeroCode === currentHeroOffer.code ? (
+                        <>
+                          <Check className="w-3 h-3 text-emerald-800" />
+                          <span>Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3 h-3" />
+                          <span>Copy</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Book With Offer CTA */}
+                  <button
+                    type="button"
+                    onClick={() => handleBookWithHeroOffer(currentHeroOffer)}
+                    className="flex items-center space-x-1.5 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold text-slate-950 bg-gradient-to-r from-amber-400 via-amber-300 to-[#ffa200] hover:from-amber-300 hover:to-amber-400 shadow-md shadow-black/30 hover:scale-102 active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 text-slate-950" />
+                    <span>Book Deal</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
+
         {/* ════ Search Bar Engine Below ═════════════════════════════════ */}
         <div className="bg-white rounded-3xl p-4 sm:p-6 shadow-2xl shadow-black/35 border border-white/20 text-slate-800">
           {/* Facility Filter Tabs */}
           <div className="flex items-center space-x-2 border-b border-slate-100 pb-3 mb-4 overflow-x-auto scrollbar-none">
             {[
               { id: 'all',       label: 'All Packages',       icon: Compass  },
+              { id: 'combo',     label: 'Multi-Place Combos', icon: MapPin   },
               { id: 'pan-india', label: 'Pan-India Yatra',    icon: Landmark },
               { id: 'spiritual', label: 'VIP Temple Darshan',  icon: Sparkles },
               { id: 'beach',     label: 'Golden Beach Resorts',icon: Waves   },

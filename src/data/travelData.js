@@ -32,6 +32,8 @@ export const PACKAGES = [
     reviewsCount: 382,
     duration: "3 Days / 2 Nights",
     location: "Puri Temple Corridor & Sea Beach",
+    places: ["Puri Jagannath Mandir", "Golden Beach", "Swargadwar"],
+    comboBadge: "3 Sacred Sites in 1",
     price: 6499,
     originalPrice: 8999,
     discount: "28% OFF",
@@ -181,6 +183,8 @@ export const PACKAGES = [
     reviewsCount: 520,
     duration: "5 Days / 4 Nights",
     location: "Puri • Konark • Dhauli • Bhubaneswar",
+    places: ["Puri Jagannath", "Konark Sun Temple", "Bhubaneswar", "Chilika"],
+    comboBadge: "4 Iconic Places in 1 Package",
     price: 14499,
     originalPrice: 19999,
     discount: "27% OFF",
@@ -329,6 +333,8 @@ export const PACKAGES = [
     reviewsCount: 380,
     duration: "3 Days / 2 Nights",
     location: "Rishikesh • Haridwar, Uttarakhand",
+    places: ["Haridwar Har Ki Pauri", "Rishikesh Laxman Jhula", "Triveni Ghat"],
+    comboBadge: "2 Holy Cities in 1 Package",
     price: 5999,
     originalPrice: 8200,
     discount: "26% OFF",
@@ -347,6 +353,100 @@ export const PACKAGES = [
     ],
     inclusions: ["Riverfront Resort Stay", "Pure Vegetarian Meals", "Yoga Session with Master", "Private AC Cab Transfer", "Aarti Puja Samagri"],
     description: "Recharge your mind and spirit in the Yoga Capital of the World where the sacred Ganga emerges crystal clear from the Himalayas. Enjoy soothing river breezes, divine aarti chants, and scenic mountain views."
+  },
+  {
+    id: "pkg-12",
+    title: "Sacred Two-Dhams Super Circuit: Kashi Vishwanath (Varanasi) + Ayodhya Ram Mandir",
+    category: "spiritual",
+    secondaryCategory: "pan-india",
+    categoryLabel: "Pan-India Twin Dhams",
+    rating: 4.98,
+    reviewsCount: 480,
+    duration: "4 Days / 3 Nights",
+    location: "Varanasi (Kashi) ➔ Ayodhya Dham",
+    places: ["Varanasi Kashi Vishwanath", "Ayodhya Ram Mandir", "Saryu River Ghats"],
+    comboBadge: "2 Sacred Dhams in 1 Package",
+    price: 11999,
+    originalPrice: 16500,
+    discount: "27% OFF",
+    featuredBadge: "Two-Dham Grand Circuit",
+    badgeColor: "bg-amber-600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Ram_Janmbhoomi_Mandir%2C_Ayodhya_Dham.jpg",
+    images: [
+      "https://upload.wikimedia.org/wikipedia/commons/d/d1/Ram_Janmbhoomi_Mandir%2C_Ayodhya_Dham.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/4/41/Evening_Ganga_Aarti%2C_at_Dashashwamedh_ghat%2C_Varanasi.jpg"
+    ],
+    highlights: [
+      "Kashi Vishwanath Jyotirlinga Sugam VIP Darshan & Ganga Bajra Aarti Boat",
+      "Shri Ram Janmabhoomi Mandir & Hanumangarhi Darshan in Ayodhya",
+      "Evening Saryu River Maha Aarti at Ram Ki Paidi",
+      "Private inter-city AC sedan transfer connecting Varanasi & Ayodhya",
+      "Accredited Hindu pilgrimage priest escort throughout both Dhams"
+    ],
+    inclusions: ["4-Star Hotels in Both Cities", "Daily Gourmet Satvik Meals", "VIP Darshan Passes", "Private AC Cab", "Priest Escort"],
+    description: "Experience North India's two most divine holy cities in one seamless journey. Witness the celestial Kashi Ganga Aarti and offer prayers at the historic new Shri Ram Janmabhoomi Mandir."
+  },
+  {
+    id: "pkg-13",
+    title: "Grand Odisha Coastal & Lagoon Duo: Puri Temple + Konark + Chilika Lake",
+    category: "family",
+    categoryLabel: "Odisha All-in-One",
+    rating: 4.96,
+    reviewsCount: 395,
+    duration: "4 Days / 3 Nights",
+    location: "Puri ➔ Konark ➔ Chilika Lagoon",
+    places: ["Puri Jagannath Mandir", "Konark Sun Temple", "Chilika Dolphin Lagoon"],
+    comboBadge: "3 Iconic Places in 1 Package",
+    price: 9499,
+    originalPrice: 13500,
+    discount: "29% OFF",
+    featuredBadge: "3-in-1 Coastal Combo",
+    badgeColor: "bg-blue-600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/3/33/Puri_Jagannath_Temple.jpg",
+    images: [
+      "https://upload.wikimedia.org/wikipedia/commons/3/33/Puri_Jagannath_Temple.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/d/d8/Sun_Temple_at_Konark%2C_Odisha%2C_India.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/a/a1/Chilika_lake.jpg"
+    ],
+    highlights: [
+      "Lord Jagannath Mandir VIP Priest Escort & Sacred Chhappan Bhog",
+      "UNESCO Konark Sun Temple architectural tour with historian guide",
+      "Satapada Chilika Lake dolphin cruise to sea-mouth island",
+      "Sunset stroll along Blue Flag certified Golden Beach",
+      "Dedicated AC vehicle with verified local guide for all 3 locations"
+    ],
+    inclusions: ["3 Nights Hotel Stay", "Breakfast & Dinners", "VIP Entry in all 3 sites", "AC Cab Transfers", "Boat Permit"],
+    description: "The ultimate 3-in-1 Odisha experience. Cover the holy city of Puri, the timeless stone chariot of Konark, and the dolphin waters of Chilika Lake in one well-paced tour."
+  },
+  {
+    id: "pkg-14",
+    title: "Himalayan Twin Spiritual Sanctums: Haridwar + Rishikesh + Devprayag",
+    category: "spiritual",
+    secondaryCategory: "pan-india",
+    categoryLabel: "Himalayan Twin Cities",
+    rating: 4.94,
+    reviewsCount: 310,
+    duration: "4 Days / 3 Nights",
+    location: "Haridwar ➔ Rishikesh ➔ Devprayag",
+    places: ["Haridwar Ghats", "Rishikesh Ashrams", "Devprayag Sangam"],
+    comboBadge: "3 Holy Places in 1 Package",
+    price: 8499,
+    originalPrice: 11999,
+    discount: "29% OFF",
+    featuredBadge: "Twin Sanctum Circuit",
+    badgeColor: "bg-emerald-600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/5/5b/Lakshman_Jhula%2C_Rishikesh%2C_Uttarakhand%2C_India.jpg",
+    images: [
+      "https://upload.wikimedia.org/wikipedia/commons/5/5b/Lakshman_Jhula%2C_Rishikesh%2C_Uttarakhand%2C_India.jpg"
+    ],
+    highlights: [
+      "Har Ki Pauri VIP Aarti seating in Haridwar",
+      "Rishikesh Laxman Jhula, Beatles Ashram & Triveni Ghat Aarti",
+      "Scenic mountain drive to Devprayag (Alaknanda & Bhagirathi Sangam)",
+      "Daily sunrise riverside yoga and meditation session"
+    ],
+    inclusions: ["Riverfront Resort Stay", "Pure Satvik Meals", "Yoga Sessions", "Private AC Cab Transfers", "All Entry Passes"],
+    description: "Explore the twin sacred gateways to the Garhwal Himalayas. Experience high-energy Ganga Aarti in Haridwar, serene yoga in Rishikesh, and the sacred river confluence at Devprayag."
   }
 ];
 
