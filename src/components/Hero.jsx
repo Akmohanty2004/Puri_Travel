@@ -13,7 +13,8 @@ import {
   Sun, 
   Waves, 
   Star,
-  Check
+  Check,
+  Landmark
 } from 'lucide-react';
 
 // ── Classical UNESCO Colonnade Temple Icon ─────────────────────────────────────
@@ -60,11 +61,11 @@ const TourGuideIcon = () => (
 
 
 
-// ── 5 Slides matching reference image sequence ────────────────────────────────
+// ── 5 Slides matching authentic Odisha locations ─────────────────────────────
 const heroSlides = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/d/d8/Sun_Temple_at_Konark%2C_Odisha%2C_India.JPG",
     badge: "UNESCO World Heritage",
     location: "Konark Sun Temple",
     subtitle: "A Timeless Marvel of Odisha",
@@ -84,7 +85,7 @@ const heroSlides = [
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=1200&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/3/33/Puri_Jagannath_Temple.jpg",
     badge: "Lord Jagannath Mandir",
     location: "Shree Jagannath Sanctum",
     subtitle: "Sacred Chhappan Bhog & Aarti",
@@ -104,7 +105,7 @@ const heroSlides = [
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/8/88/Golden_beach_puri.jpg",
     badge: "Blue Flag Certified",
     location: "Puri Golden Beach",
     subtitle: "Sunrise Waves & Marine Drive",
@@ -124,7 +125,7 @@ const heroSlides = [
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Chilika_lake.jpg",
     badge: "Satapada Lagoon",
     location: "Chilika Dolphin Safari",
     subtitle: "Asia's Largest Coastal Lagoon",
@@ -144,7 +145,7 @@ const heroSlides = [
   },
   {
     id: 5,
-    image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Raghurajpur_7.jpg",
     badge: "National Craft Heritage",
     location: "Raghurajpur Heritage Village",
     subtitle: "Ancient Pattachitra Art Masters",
@@ -522,6 +523,7 @@ export default function Hero({ onSearch, onSelectCategory, onOpenFacilities }) {
           <div className="flex items-center space-x-2 border-b border-slate-100 pb-3 mb-4 overflow-x-auto scrollbar-none">
             {[
               { id: 'all',       label: 'All Packages',       icon: Compass  },
+              { id: 'pan-india', label: 'Pan-India Yatra',    icon: Landmark },
               { id: 'spiritual', label: 'VIP Temple Darshan',  icon: Sparkles },
               { id: 'beach',     label: 'Golden Beach Resorts',icon: Waves   },
               { id: 'chilika',   label: 'Chilika & Wildlife',  icon: Sun      },
@@ -573,6 +575,11 @@ export default function Hero({ onSearch, onSelectCategory, onOpenFacilities }) {
                   <option value="Jagannath Mandir VIP Darshan">Jagannath Mandir VIP Darshan</option>
                   <option value="Konark Sun Temple Heritage Circuit">Konark Sun Temple Heritage</option>
                   <option value="Chilika Lake Satapada Lagoon">Chilika Lake & Dolphins</option>
+                  <option value="Varanasi Kashi Vishwanath & Ganga Aarti">Varanasi Kashi Vishwanath</option>
+                  <option value="Ayodhya Shri Ram Janmabhoomi">Ayodhya Ram Mandir</option>
+                  <option value="Tirupati Balaji VIP Darshan">Tirupati Balaji Temple</option>
+                  <option value="Kashmir Dal Lake & Gulmarg">Kashmir Valley & Dal Lake</option>
+                  <option value="Rishikesh & Haridwar Ganga Aarti">Rishikesh & Haridwar Yoga</option>
                   <option value="Raghurajpur Crafts Village">Raghurajpur Craft Village</option>
                 </select>
               </div>

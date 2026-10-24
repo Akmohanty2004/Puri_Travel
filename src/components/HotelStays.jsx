@@ -46,10 +46,13 @@ export default function HotelStays({ onBookHotel }) {
           {HOTELS.map((hotel, idx) => (
             <div
               key={hotel.id}
-              className={`bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group hover:-translate-y-1 ${
+              className={`bg-white rounded-[24px] overflow-hidden border border-slate-200/90 hover:border-sky-300/80 shadow-[0_8px_25px_rgba(7,30,61,0.06)] hover:shadow-[0_20px_40px_rgba(0,119,182,0.15)] transition-all duration-300 flex flex-col group hover:-translate-y-1.5 relative ${
                 idx >= 2 && !showAllMobile ? 'hidden md:flex' : 'flex'
               }`}
             >
+              {/* Top Accent Hover Shimmer */}
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-sky-400 via-amber-400 to-[#0077b6] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30" />
+
               {/* Hotel Image with Tag */}
               <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
                 <img

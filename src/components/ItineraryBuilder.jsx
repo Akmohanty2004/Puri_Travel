@@ -50,7 +50,7 @@ export default function ItineraryBuilder({ onBookCustomPlan }) {
       originalPrice: Math.round(totalCost * 1.3),
       discount: '23% OFF',
       featuredBadge: 'Personalized Plan',
-      image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=900&q=80',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Puri_Jagannath_Temple.jpg',
       highlights: selectedActivities.map((a) => `${a.timeSlot}: ${a.title}`),
       inclusions: ['Selected Heritage Activities', 'Premium AC Vehicle Transfer', 'Personal Local Sevayat Guide', '24/7 Helpline Support'],
       description: `Tailored ${selectedDuration} itinerary including ${selectedActivities.length} chosen experiences across Puri sanctum and coastal hotspots.`

@@ -29,18 +29,23 @@ export default function PackagesSection({
 
   const categories = [
     { id: 'all', label: 'All Experiences' },
+    { id: 'pan-india', label: '🇮🇳 Pan-India Yatra' },
     { id: 'spiritual', label: 'Spiritual & VIP Darshan' },
     { id: 'beach', label: 'Golden Beach & Resorts' },
     { id: 'chilika', label: 'Chilika & Wildlife' },
     { id: 'heritage', label: 'Heritage & Craft Villages' },
-    { id: 'family', label: 'Grand Odisha Circuit' },
+    { id: 'family', label: 'Grand Circuits' },
   ];
 
   const filteredPackages = useMemo(() => {
     return PACKAGES.filter((pkg) => {
       // Category filter
-      if (selectedCategory !== 'all' && pkg.category !== selectedCategory) {
-        return false;
+      if (selectedCategory !== 'all') {
+        if (selectedCategory === 'pan-india') {
+          if (pkg.secondaryCategory !== 'pan-india') return false;
+        } else if (pkg.category !== selectedCategory) {
+          return false;
+        }
       }
       // Price filter
       if (pkg.price > maxPrice) {
@@ -152,7 +157,7 @@ export default function PackagesSection({
         {/* Packages Grid */}
         {filteredPackages.length > 0 ? (
           <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4.5 sm:gap-6">
               {filteredPackages.map((pkg, idx) => (
                 <div
                   key={pkg.id}

@@ -66,7 +66,8 @@ export default function App() {
   };
 
   const handleSearch = ({ tab }) => {
-    if (tab === 'spiritual') setSelectedCategory('spiritual');
+    if (tab === 'pan-india') setSelectedCategory('pan-india');
+    else if (tab === 'spiritual') setSelectedCategory('spiritual');
     else if (tab === 'beach') setSelectedCategory('beach');
     else if (tab === 'chilika') setSelectedCategory('chilika');
     else setSelectedCategory('all');

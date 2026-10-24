@@ -37,11 +37,11 @@ export const PACKAGES = [
     discount: "28% OFF",
     featuredBadge: "Bestseller",
     badgeColor: "bg-amber-500",
-    image: "https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=900&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/3/33/Puri_Jagannath_Temple.jpg",
     images: [
-      "https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1566552881560-0be862a7c445?auto=format&fit=crop&w=900&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/3/33/Puri_Jagannath_Temple.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/7/7b/Shri_Jagannath_Temple%2CPuri.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/d/d2/Jagannath_Temple%2C_Puri_07.jpg"
     ],
     highlights: [
       "Special VIP Darshan Escort with Senior Sevayat",
@@ -67,11 +67,11 @@ export const PACKAGES = [
     discount: "26% OFF",
     featuredBadge: "Luxury Coastal",
     badgeColor: "bg-cyan-500",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/8/88/Golden_beach_puri.jpg",
     images: [
+      "https://upload.wikimedia.org/wikipedia/commons/8/88/Golden_beach_puri.jpg",
       "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=900&q=80"
+      "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=80"
     ],
     highlights: [
       "Private Seaview Balcony Suite at Puri Golden Beach",
@@ -97,11 +97,11 @@ export const PACKAGES = [
     discount: "29% OFF",
     featuredBadge: "Wildlife & Nature",
     badgeColor: "bg-emerald-500",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Chilika_lake.jpg",
     images: [
-      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1520255870062-bd79d3865de7?auto=format&fit=crop&w=900&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/a/a1/Chilika_lake.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/a/ae/Chilika_Lake_4.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/1/16/Chilika_Lake-_Odisha.jpg"
     ],
     highlights: [
       "Speedboat cruise to Chilika Sea-Mouth where lake meets ocean",
@@ -127,10 +127,11 @@ export const PACKAGES = [
     discount: "28% OFF",
     featuredBadge: "UNESCO Heritage",
     badgeColor: "bg-orange-600",
-    image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=900&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/d/d8/Sun_Temple_at_Konark%2C_Odisha%2C_India.JPG",
     images: [
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=900&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/d/d8/Sun_Temple_at_Konark%2C_Odisha%2C_India.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/5/5b/One_of_the_24_wheels_of_Konark_Sun_Temple.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/1/11/Konark_Sun_Temple_wheel.jpg"
     ],
     highlights: [
       "In-depth architectural exploration of the 13th-century Black Pagoda",
@@ -156,10 +157,10 @@ export const PACKAGES = [
     discount: "28% OFF",
     featuredBadge: "Art & Handloom",
     badgeColor: "bg-amber-600",
-    image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=900&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Raghurajpur_7.jpg",
     images: [
-      "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/2/2a/Raghurajpur_7.jpg",
+      "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=900&q=80"
     ],
     highlights: [
       "Hands-on masterclass in ancient palm leaf Pattachitra painting",
@@ -185,11 +186,11 @@ export const PACKAGES = [
     discount: "27% OFF",
     featuredBadge: "All-Inclusive Grand Tour",
     badgeColor: "bg-blue-600",
-    image: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=900&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/commons/2/2d/Lingaraj_temple_Bhubaneswar_11004.jpg",
     images: [
-      "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=900&q=80",
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80"
+      "https://upload.wikimedia.org/wikipedia/commons/2/2d/Lingaraj_temple_Bhubaneswar_11004.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/3/33/Puri_Jagannath_Temple.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/d/d8/Sun_Temple_at_Konark%2C_Odisha%2C_India.JPG"
     ],
     highlights: [
       "Complete coverage of Jagannath Puri, Konark Sun Temple, and Lingaraj Temple",
@@ -200,6 +201,152 @@ export const PACKAGES = [
     ],
     inclusions: ["4/5-Star Premium Hotels", "Daily Gourmet Breakfast & Dinners", "VIP Entry in all sites", "Private AC Innova/Sedan", "24/7 Concierge"],
     description: "The definitive Odyssey of Odisha. From ancient temple architectures and timeless stone carvings to peaceful beaches and sacred holy sanctums, experience the ultimate journey."
+  },
+  {
+    id: "pkg-7",
+    title: "Divine Kashi Vishwanath & Ganga Aarti Spiritual Yatra",
+    category: "spiritual",
+    secondaryCategory: "pan-india",
+    categoryLabel: "Pan-India Spiritual",
+    rating: 4.98,
+    reviewsCount: 640,
+    duration: "3 Days / 2 Nights",
+    location: "Varanasi Ghats & Kashi Corridor, UP",
+    price: 7999,
+    originalPrice: 10999,
+    discount: "27% OFF",
+    featuredBadge: "Sacred Jyotirlinga",
+    badgeColor: "bg-amber-600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/4/41/Evening_Ganga_Aarti%2C_at_Dashashwamedh_ghat%2C_Varanasi.jpg",
+    images: [
+      "https://upload.wikimedia.org/wikipedia/commons/4/41/Evening_Ganga_Aarti%2C_at_Dashashwamedh_ghat%2C_Varanasi.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/5a/Ganga_Aarti_at_Varanasi_ghats.jpg"
+    ],
+    highlights: [
+      "VIP Sugam Darshan at Shri Kashi Vishwanath Jyotirlinga",
+      "Private boat reserved for Dashashwamedh Ghat Evening Ganga Aarti",
+      "Subah-e-Banaras sunrise holy dip and boat ride",
+      "Guided spiritual walk through ancient Sarnath Buddhist site",
+      "Traditional Banarasi Satvik Thali & Paan experience"
+    ],
+    inclusions: ["Heritage Riverside Hotel", "Breakfast & Banarasi Dinner", "VIP Sugam Darshan Pass", "Private Ganga Boat", "Local Pandit Guide"],
+    description: "Experience the eternal city of Lord Shiva. Witness the mesmerizing flames of the Dashashwamedh Ghat Ganga Aarti, pray at the golden spires of Kashi Vishwanath, and cruise the sacred holy waters of Mother Ganga."
+  },
+  {
+    id: "pkg-8",
+    title: "Shri Ram Janmabhoomi & Ayodhya Dham Sacred Pilgrimage",
+    category: "spiritual",
+    secondaryCategory: "pan-india",
+    categoryLabel: "Pan-India Spiritual",
+    rating: 4.99,
+    reviewsCount: 890,
+    duration: "2 Days / 1 Night",
+    location: "Ayodhya Dham, Uttar Pradesh",
+    price: 5499,
+    originalPrice: 7500,
+    discount: "26% OFF",
+    featuredBadge: "Ram Lalla Darshan",
+    badgeColor: "bg-orange-500",
+    image: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Ram_Janmbhoomi_Mandir%2C_Ayodhya_Dham.jpg",
+    images: [
+      "https://upload.wikimedia.org/wikipedia/commons/d/d1/Ram_Janmbhoomi_Mandir%2C_Ayodhya_Dham.jpg"
+    ],
+    highlights: [
+      "Special guided darshan at the magnificent Shri Ram Janmabhoomi Mandir",
+      "Evening Maha Aarti at sacred Saryu Ghat",
+      "Blessing visit at Hanuman Garhi temple",
+      "Kanak Bhawan & Dashrath Mahal historical tour",
+      "Private AC vehicle pickup & drop from Ayodhya/Lucknow airport"
+    ],
+    inclusions: ["Premium Hotel Stay", "Breakfast & Traditional Meals", "Priority Darshan Assistance", "Dedicated Tour Escort", "All Local Transfers"],
+    description: "Embark on a soul-stirring journey to Ayodhya Dham, the birthplace of Lord Rama. Bow before the divine Ram Lalla idol in the newly consecrated grand temple and participate in the evening Saryu River aarti."
+  },
+  {
+    id: "pkg-9",
+    title: "Tirupati Balaji Sheegra VIP Darshan & Tirumala Sacred Hills",
+    category: "spiritual",
+    secondaryCategory: "pan-india",
+    categoryLabel: "Pan-India Spiritual",
+    rating: 4.97,
+    reviewsCount: 710,
+    duration: "2 Days / 1 Night",
+    location: "Tirumala Hills, Andhra Pradesh",
+    price: 6999,
+    originalPrice: 9500,
+    discount: "26% OFF",
+    featuredBadge: "Sheegra Darshan",
+    badgeColor: "bg-amber-500",
+    image: "https://upload.wikimedia.org/wikipedia/commons/0/00/Tirumala_Tirupati.jpg",
+    images: [
+      "https://upload.wikimedia.org/wikipedia/commons/0/00/Tirumala_Tirupati.jpg"
+    ],
+    highlights: [
+      "Guaranteed Sheegra Special Entry VIP Darshan for Lord Venkateswara",
+      "Sacred Tirupati Laddu Prasadam included for all devotees",
+      "Visit to Goddess Padmavathi Ammavari Temple at Tiruchanur",
+      "Scenic AC vehicle drive through the holy Seven Seshachalam Hills",
+      "Assistance with traditional tonsuring / seva rituals"
+    ],
+    inclusions: ["3-Star Hotel in Tirupati", "Breakfast & South Indian Meals", "Official TTD Special Entry Pass", "Private AC Cab Transfer", "Experienced Tour Guide"],
+    description: "Receive the divine blessings of Lord Venkateswara at Tirumala, the Kaliyuga Vaikuntham. Our seamless pilgrimage package handles your Sheegra Darshan pass, transport up the hills, and temple prasad effortlessly."
+  },
+  {
+    id: "pkg-10",
+    title: "Kashmir Paradise: Dal Lake Shikara & Gulmarg Alpine Meadow",
+    category: "family",
+    secondaryCategory: "pan-india",
+    categoryLabel: "Pan-India Holidays",
+    rating: 4.95,
+    reviewsCount: 430,
+    duration: "5 Days / 4 Nights",
+    location: "Srinagar • Gulmarg • Pahalgam, Kashmir",
+    price: 16999,
+    originalPrice: 22999,
+    discount: "26% OFF",
+    featuredBadge: "Paradise on Earth",
+    badgeColor: "bg-emerald-600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Shikara_Dal_Lake.jpg",
+    images: [
+      "https://upload.wikimedia.org/wikipedia/commons/e/e4/Shikara_Dal_Lake.jpg"
+    ],
+    highlights: [
+      "Luxury carved wooden Houseboat stay on Dal Lake",
+      "Sunset Shikara ride through floating gardens and lotus lakes",
+      "Gulmarg Gondola Phase 1 & 2 scenic mountain cable car ride",
+      "Pahalgam Betaab Valley & Aru Valley excursion",
+      "Mughal Gardens (Nishat & Shalimar Bagh) heritage tour"
+    ],
+    inclusions: ["Luxury Houseboat & 4-Star Resort", "Daily Breakfast & Dinner", "Shikara Ride Voucher", "Heated Private AC Cab", "All Tolls & Permits"],
+    description: "Discover why Kashmir is called Paradise on Earth. Glide peacefully across Dal Lake on a traditional Shikara, ascend the snow-capped peaks of Gulmarg, and immerse yourself in the warm hospitality of the valley."
+  },
+  {
+    id: "pkg-11",
+    title: "Rishikesh & Haridwar: Holy Ganga Aarti & Himalayan Foothills",
+    category: "spiritual",
+    secondaryCategory: "pan-india",
+    categoryLabel: "Pan-India Spiritual",
+    rating: 4.93,
+    reviewsCount: 380,
+    duration: "3 Days / 2 Nights",
+    location: "Rishikesh • Haridwar, Uttarakhand",
+    price: 5999,
+    originalPrice: 8200,
+    discount: "26% OFF",
+    featuredBadge: "Yoga & Ganga Aarti",
+    badgeColor: "bg-cyan-600",
+    image: "https://upload.wikimedia.org/wikipedia/commons/5/5b/Lakshman_Jhula%2C_Rishikesh%2C_Uttarakhand%2C_India.jpg",
+    images: [
+      "https://upload.wikimedia.org/wikipedia/commons/5/5b/Lakshman_Jhula%2C_Rishikesh%2C_Uttarakhand%2C_India.jpg"
+    ],
+    highlights: [
+      "VIP Seating at Har Ki Pauri Evening Ganga Aarti in Haridwar",
+      "Guided walk across iconic Lakshman Jhula and Ram Jhula suspension bridges",
+      "Morning Himalayan sunrise yoga and meditation session by the river",
+      "Visit to the historic Beatles Ashram & Triveni Ghat",
+      "Neelkanth Mahadev sacred mountain temple excursion"
+    ],
+    inclusions: ["Riverfront Resort Stay", "Pure Vegetarian Meals", "Yoga Session with Master", "Private AC Cab Transfer", "Aarti Puja Samagri"],
+    description: "Recharge your mind and spirit in the Yoga Capital of the World where the sacred Ganga emerges crystal clear from the Himalayas. Enjoy soothing river breezes, divine aarti chants, and scenic mountain views."
   }
 ];
 

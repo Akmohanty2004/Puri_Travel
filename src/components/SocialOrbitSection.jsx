@@ -27,7 +27,7 @@ export default function SocialOrbitSection() {
       views: '320K',
       author: '@shree_jagannatha_puri',
       tag: 'Sacred Ritual',
-      image: 'https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=700&q=80',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Puri_Jagannath_Temple.jpg',
       description: 'The celestial 5:00 AM lamp offering ritual where the sanctum fills with the fragrance of camphor, sandalwood, and tulsi garlands.'
     },
     {
@@ -41,7 +41,7 @@ export default function SocialOrbitSection() {
       views: '185K',
       author: 'PuriTravel Stories',
       tag: 'Nature & Coastal',
-      image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/8/88/Golden_beach_puri.jpg',
       description: 'Watch the sun rise over the Bay of Bengal while holy chants reverberate through the fresh sea breeze.'
     },
     {
@@ -55,7 +55,7 @@ export default function SocialOrbitSection() {
       views: '94K',
       author: '@chilika_adventures',
       tag: 'Eco Safari',
-      image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=80',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/a/a1/Chilika_lake.jpg',
       description: 'Rare close-up footage of playful dolphins leaping beside the traditional eco-speedboats at the sea mouth.'
     },
     {
@@ -69,7 +69,7 @@ export default function SocialOrbitSection() {
       views: '240K',
       author: '@odisha_heritage',
       tag: 'Ancient Architecture',
-      image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=700&q=80',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/5/5b/One_of_the_24_wheels_of_Konark_Sun_Temple.jpg',
       description: 'How 13th-century sculptors engineered 24 stone wheels that calculate exact time to the minute using shadows.'
     }
   ];
