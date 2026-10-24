@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --puri-navy: #071e3d;
+    --puri-royal: #0b2545;
+    --puri-blue: #0077b6;
+    --puri-cyan: #00b4d8;
+    --puri-light-cyan: #e0f4fc;
+    --puri-orange: #ff6f00;
+    --puri-amber: #ff9e00;
+    --puri-gold: #ffc107;
+    --puri-sand: #fffbf2;
+    --puri-dark: #09131f;
+  }
+
+  * {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Creative Animations */
+@keyframes planeFloat {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(12px, -8px) rotate(4deg);
+  }
+  50% {
+    transform: translate(25px, -3px) rotate(1deg);
+  }
+  75% {
+    transform: translate(10px, -10px) rotate(-3deg);
+  }
+}
+
+@keyframes waveSlow {
+  0% {
+    transform: translateX(0) translateZ(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(-25%) translateZ(0) scaleY(1.08);
+  }
+  100% {
+    transform: translateX(-50%) translateZ(0) scaleY(1);
+  }
+}
+
+@keyframes orbitRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes counterOrbitRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes pulseHalo {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.2;
+  }
+}
+
+@keyframes shimmerGlow {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-plane-float {
+  animation: planeFloat 6s ease-in-out infinite;
+}
+
+.animate-wave-slow {
+  animation: waveSlow 18s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+}
+
+.animate-orbit-spin {
+  animation: orbitRotate 28s linear infinite;
+}
+
+.animate-orbit-counter {
+  animation: counterOrbitRotate 28s linear infinite;
+}
+
+.animate-pulse-halo {
+  animation: pulseHalo 3s ease-in-out infinite;
+}
+
+.shimmer-badge {
+  background: linear-gradient(90deg, #ff6f00, #ff9e00, #ffc107, #ff6f00);
+  background-size: 200% 100%;
+  animation: shimmerGlow 4s linear infinite;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.glass-dark {
+  background: rgba(11, 37, 69, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #0077b6;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff7b00;
+}
